@@ -1,2 +1,4 @@
 # swift-topics
-Experimenting with decoupled topics that are easily transferable
+Experimenting with decoupled topics that are easily transferable.
+
+
