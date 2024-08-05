@@ -30,16 +30,16 @@ And then we might also have something like this:
 
 ```swift
 extension SettingsScreenAnalytics {
-	func analytics(forAction action: SettingsScreenAction) -> SettingsScreenAnalytics {
-		switch action {
-		case .screenViewed:
-			return .screenViewed
-		case .screenDismissed:
-			return .screenDismissed)
-		case let .settingsChanged(key, value):
-			return .settingsChanged(key, value)
-		}
-	}
+    func analytics(forAction action: SettingsScreenAction) -> SettingsScreenAnalytics {
+	switch action {
+        case .screenViewed:
+           return .screenViewed
+        case .screenDismissed:
+           return .screenDismissed)
+        case let .settingsChanged(key, value):
+           return .settingsChanged(key, value)
+        }
+    }
 }
 ```
 
