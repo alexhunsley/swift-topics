@@ -47,7 +47,7 @@ Ugh! This repetition seems very tedious. And what's worse, we've coupled our ana
 
 And suppose that alongside `Action` and `Analytics` we had another aspect such as `Logging`. You now have three very similar enums, and the amount of code mapping these objects to each other could balloon (3 x 2 = 6 possible conversion routines).
 
-This is the sort of scenario that Swift Topics helps with.
+So what can we do to make this nicer?
 
 # Some analysis
 
