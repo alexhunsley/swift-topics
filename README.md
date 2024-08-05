@@ -60,7 +60,7 @@ It's helpful to recognise that we have two orthogonal concerns here:
 
 # Our example expressed in Swift Topics
 
-If we express our example above using Swift Topics, the setup code for our topic (SettingsScreen) and contexts (action, event) is like this:
+If we express our example above using the idea of topics, the setup code for our topic (SettingsScreen) and contexts (action, event) is like this:
 
 ```swift
 	// a topic for our settings screen
@@ -81,10 +81,10 @@ If we express our example above using Swift Topics, the setup code for our topic
 	}
 ```
 
-And here's how we'd use Swift Topics in this scenario:
+And here's how we'd use the topics in this scenario:
 
 ```swift
-	// make a settings screen action and event
+    // make a settings screen action and event
     let settingsAction = SettingsAction(topic: .screenViewed)
     let settingsEvent = SettingsEvent(topic: .screenDismissed)
 
