@@ -60,10 +60,10 @@ It's helpful to recognise that we have two orthogonal concerns here:
 
 # Our example expressed in Swift Topics
 
-If we express our example above using Swift Topics, the setup code for our topic (Login) and contexts (action, event) is like this:
+If we express our example above using Swift Topics, the setup code for our topic (SettingsScreen) and contexts (action, event) is like this:
 
 ```swift
-	// a topic for our login screen
+	// a topic for our settings screen
 	enum SettingsTopic: Topic {
 	    case screenViewed
     	case screenDismissed
@@ -77,25 +77,25 @@ If we express our example above using Swift Topics, the setup code for our topic
 
 	// The Event context for SettingsTopic
 	struct SettingsEvent: TopicRepresentable {
-	    let topic: LoginTopic
+	    let topic: SettingsTopic
 	}
 ```
 
 And here's how we'd use Swift Topics in this scenario:
 
 ```swift
-	// make a login and event actions in a straightforward way
+	// make a settings screen action and event
     let settingsAction = SettingsAction(topic: .screenViewed)
     let settingsEvent = SettingsEvent(topic: .screenDismissed)
 
     // OR we can use the `build` helper via the topic to do the same thing:
-    let settingsAction: LoginAction = SettingsTopic.screenViewed.build()
-    let settingsEvent: LoginEvent = SettingsTopic.screenDismissed.build()
+    let settingsAction: SettingsAction = SettingsTopic.screenViewed.build()
+    let settingsEvent: SettingsEvent = SettingsTopic.screenDismissed.build()
 ```
 
-Note that in the above code, the `build()` mechanism knows what to make given the context: it senses the type of the var we're assigning to and builds the correct thing.
+Note that in the last two lines above, the `build()` mechanism knows what to make given what is to left of the `=`: it senses the type of the var we're assigning to and builds the correct thing. This can be handier in some places, e.g. when returning a context from a func (it saves you making a temporary var).
 
-What about that laborious switch statement for converting an Action into an Event? Now it's just this single line:
+And what about that laborious switch statement for converting an Action into an Event? Now it's just this single line:
 
 ```swift
 	let settingsEvent = SettingsEvent(mirroring: settingsAction)
