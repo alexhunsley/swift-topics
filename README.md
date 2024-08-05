@@ -98,7 +98,7 @@ Note that in the last two lines above, the `build()` mechanism knows what to mak
 And what about that laborious switch statement for converting an Action into an Event? Now it's just this single line:
 
 ```swift
-	let settingsEvent = SettingsEvent(mirroring: settingsAction)
+    let settingsEvent = SettingsEvent(mirroring: settingsAction)
 ```
 
 This `mirroring` init is automatically provided for all applicable contexts. No laborious switch, and no ballooning NxN possible code possibilities for N contexts.
