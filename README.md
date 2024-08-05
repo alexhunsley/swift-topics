@@ -63,22 +63,22 @@ It's helpful to recognise that we have two orthogonal concerns here:
 If we express our example above using the idea of topics, the setup code for our topic (SettingsScreen) and contexts (action, event) is like this:
 
 ```swift
-	// a topic for our settings screen
-	enum SettingsTopic: Topic {
-	    case screenViewed
+    // a topic for our settings screen
+    enum SettingsTopic: Topic {
+        case screenViewed
     	case screenDismissed
     	case settingChanged(String, Int)
     }
 
-	// The Action context for SettingsTopic
-	struct SettingsAction: TopicRepresentable {
-	    let topic: SettingsTopic
-	}
+    // The Action context for SettingsTopic
+    struct SettingsAction: TopicRepresentable {
+        let topic: SettingsTopic
+    }
 
-	// The Event context for SettingsTopic
-	struct SettingsEvent: TopicRepresentable {
-	    let topic: SettingsTopic
-	}
+    // The Event context for SettingsTopic
+    struct SettingsEvent: TopicRepresentable {
+        let topic: SettingsTopic
+    }
 ```
 
 And here's how we'd use the topics in this scenario:
