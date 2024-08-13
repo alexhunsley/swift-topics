@@ -105,6 +105,56 @@ This `mirroring` init is automatically provided for all applicable contexts. No 
 
 What if you don't *want* this automatic conversion across between all possible contexts for some topics? That's something we can do too. More on this later.
 
+# State re-use
+
+We can do enum state re-use in the usual way, using enum associated values.
+
+Here's an example that reuses an `enum ScreenLifecycle` to reduce repetition:
+
+```swift
+	// a plain enum for the state we want to re-use
+    enum ScreenLifecycle: Equatable {
+        case screenViewed
+        case screenDismissed
+    }
+
+    // our topics
+    enum LoginScreenTopic: Topic, Equatable {
+    	// re-use:
+        case lifecycle(ScreenLifecycle)
+        case usernameFieldUpdated(username: String)
+        case logInTapped
+    }
+
+    enum SettingsScreenTopic: Topic, Equatable {
+    	// re-use:
+        case lifecycle(ScreenLifecycle)
+        case settingChanged(String, Int)
+    }
+
+    // our contexts
+    struct LoginScreenAction: TopicRepresentable {
+        let topic: LoginScreenTopic
+    }
+
+    struct LoginScreenEvent: TopicRepresentable {
+        let topic: LoginScreenTopic
+    }
+
+    // Usage examples
+
+	// we can still use .build() on a LoginScreenTopic
+    let loginScreenActionViaBuild: LoginScreenAction
+    	= LoginScreenTopic.lifecycle(.screenViewed).build()
+
+    // and we can still use .mirror() to convert one context to another
+    // (with the same topic value)
+    let loginScreenEventViaMirror: LoginScreenEvent
+    	= loginScreenActionViaBuild.mirror()
+```
+
+
+
 # (Afterword)
 
 I thought of the word `aspect` instead of `context`, but aspect oriented programming is a distinct thing and using that word might be confusing.
