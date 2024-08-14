@@ -68,17 +68,17 @@ enum SettingsTopic: Topic {
         case screenViewed
     	case screenDismissed
     	case settingChanged(String, Int)
-    }
+}
 
-    // The Action context for SettingsTopic
-    struct SettingsAction: TopicRepresentable {
-        let topic: SettingsTopic
-    }
+// The Action context for SettingsTopic
+struct SettingsAction: TopicRepresentable {
+    let topic: SettingsTopic
+}
 
-    // The Event context for SettingsTopic
-    struct SettingsEvent: TopicRepresentable {
-        let topic: SettingsTopic
-    }
+// The Event context for SettingsTopic
+struct SettingsEvent: TopicRepresentable {
+    let topic: SettingsTopic
+}
 ```
 
 And here's how we'd use the topics in this scenario:
