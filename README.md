@@ -63,8 +63,8 @@ It's helpful to recognise that we have two orthogonal concerns here:
 If we express our example above using the idea of topics, the setup code for our topic (settings screen) and contexts (action, event) is like this:
 
 ```swift
-    // a topic for our settings screen
-    enum SettingsTopic: Topic {
+// a topic for our settings screen
+enum SettingsTopic: Topic {
         case screenViewed
     	case screenDismissed
     	case settingChanged(String, Int)
@@ -84,13 +84,13 @@ If we express our example above using the idea of topics, the setup code for our
 And here's how we'd use the topics in this scenario:
 
 ```swift
-    // make a settings screen action and event
-    let settingsAction = SettingsAction(topic: .screenViewed)
-    let settingsEvent = SettingsEvent(topic: .screenDismissed)
+// make a settings screen action and event
+let settingsAction = SettingsAction(topic: .screenViewed)
+let settingsEvent = SettingsEvent(topic: .screenDismissed)
 
-    // OR we can use the `build` helper via the topic to do the same thing:
-    let settingsAction: SettingsAction = SettingsTopic.screenViewed.build()
-    let settingsEvent: SettingsEvent = SettingsTopic.screenDismissed.build()
+// OR we can use the `build` helper via the topic to do the same thing:
+let settingsAction: SettingsAction = SettingsTopic.screenViewed.build()
+let settingsEvent: SettingsEvent = SettingsTopic.screenDismissed.build()
 ```
 
 Note that in the last two lines above, the `build()` mechanism knows what to make given the type to the left of the `=`: it senses the type of the var we're assigning to and builds the correct thing. This can be handier in some places, e.g. when returning a context from a func (it saves you making a temporary var).
@@ -98,7 +98,7 @@ Note that in the last two lines above, the `build()` mechanism knows what to mak
 And what about that laborious switch statement for converting an `Action` into an `Event`? Now it's just this single line:
 
 ```swift
-    let settingsEvent = SettingsEvent(mirroring: settingsAction)
+let settingsEvent = SettingsEvent(mirroring: settingsAction)
 ```
 
 This `mirroring` init is automatically provided for all applicable contexts. No laborious switch, and no ballooning NxN possible code possibilities for N contexts.
@@ -112,47 +112,46 @@ We can do enum state re-use in the usual way, using enum associated values.
 Here's an example that reuses an `enum ScreenLifecycle` to reduce repetition:
 
 ```swift
-	// a plain enum for the state we want to re-use
-    enum ScreenLifecycle: Equatable {
-        case screenViewed
-        case screenDismissed
-    }
+// a plain enum for the state we want to re-use
+enum ScreenLifecycle: Equatable {
+    case screenViewed
+    case screenDismissed
+}
 
-    // our topics
-    enum LoginScreenTopic: Topic, Equatable {
+// our topics
+enum LoginScreenTopic: Topic, Equatable {
     	// re-use:
-        case lifecycle(ScreenLifecycle)
-        case usernameFieldUpdated(username: String)
-        case logInTapped
-    }
+    case lifecycle(ScreenLifecycle)
+    case usernameFieldUpdated(username: String)
+    case logInTapped
+}
 
-    enum SettingsScreenTopic: Topic, Equatable {
+enum SettingsScreenTopic: Topic, Equatable {
     	// re-use:
-        case lifecycle(ScreenLifecycle)
-        case settingChanged(String, Int)
-    }
+    case lifecycle(ScreenLifecycle)
+    case settingChanged(String, Int)
+}
 
-    // our contexts
-    struct LoginScreenAction: TopicRepresentable {
-        let topic: LoginScreenTopic
-    }
+// our contexts
+struct LoginScreenAction: TopicRepresentable {
+    let topic: LoginScreenTopic
+}
 
-    struct LoginScreenEvent: TopicRepresentable {
-        let topic: LoginScreenTopic
-    }
+struct LoginScreenEvent: TopicRepresentable {
+    let topic: LoginScreenTopic
+}
 
-    // Usage examples
+// Usage examples
 
-	// we can still use .build() on a LoginScreenTopic
-    let loginScreenActionViaBuild: LoginScreenAction
+// we can still use .build() on a LoginScreenTopic
+let loginScreenActionViaBuild: LoginScreenAction
     	= LoginScreenTopic.lifecycle(.screenViewed).build()
 
-    // and we can still use .mirror() to convert one context to another
-    // (with the same topic value)
-    let loginScreenEventViaMirror: LoginScreenEvent
+// and we can still use .mirror() to convert one context to another
+// (with the same topic value)
+let loginScreenEventViaMirror: LoginScreenEvent
     	= loginScreenActionViaBuild.mirror()
 ```
-
 
 
 # (Afterword)
