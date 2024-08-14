@@ -160,3 +160,4 @@ Here's an example that reuses an `enum ScreenLifecycle` to reduce repetition:
 I thought of the word `aspect` instead of `context`, but aspect oriented programming is a distinct thing and using that word might be confusing.
 
 I did wonder about using PointFree's `Tagged` library to approach this subject, but it's not quite the right fit. In particular, I don't think Tagged's transparent wrapping of types fits here -- having types to represent contexts like Action or Analytics seems appropriate (it's a place to put helper code, for a start).
+And obviously Tagged is about not confusing types in contexts and so translating between them might not fit with the whole raison det of the library.
