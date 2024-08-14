@@ -45,7 +45,7 @@ extension SettingsScreenAnalytics {
 
 Ugh! This repetition seems very tedious. And what's worse, we've coupled our analytics type to our events type. This isn't ideal; imagine if we wanted to break our app into modules and minimise cross-talk.
 
-And suppose that alongside `Action` and `Analytics` we had another aspect such as `Logging`. You now have three very similar enums, and the amount of code mapping these objects to each other could balloon (3 x 2 x 2 = 12 possible conversion routines).
+And suppose that alongside `Action` and `Analytics` we had another aspect such as `Logging`. You now have three very similar enums, and the amount of code mapping these objects to each other could balloon (3 x 2 = 6 possible conversion routines).
 
 So what can we do to make this nicer?
 
@@ -101,7 +101,7 @@ And what about that laborious switch statement for converting an `Action` into a
 let settingsEvent = SettingsEvent(mirroring: settingsAction)
 ```
 
-This `mirroring` init is automatically provided for all applicable contexts. No laborious switch, and no ballooning Nx(N-1)x2 possible code possibilities for N contexts.
+This `mirroring` init is automatically provided for all applicable contexts. No laborious switch, and no ballooning Nx(N-1) possible code possibilities for N contexts.
 
 What if you don't *want* this automatic conversion across between all possible contexts for some topics? That's something we can do too. More on this later.
 
