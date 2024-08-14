@@ -24,7 +24,7 @@ enum SettingsScreenAnalytics {
 }
 ```
 
-Hmm. We have a seperate enum type just for the analytics, which is probably appropriate, but that repetition of every case is annoying.
+Hmm. We have a seperate type just for the analytics, which is probably appropriate, but that repetition of every case is annoying.
 
 And then we might also have something like this:
 
