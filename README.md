@@ -101,7 +101,7 @@ And what about that laborious switch statement for converting an `Action` into a
 let settingsEvent = SettingsEvent(mirroring: settingsAction)
 ```
 
-This `mirroring` init is automatically provided for all applicable contexts. No laborious switch, and no ballooning NxN possible code possibilities for N contexts.
+This `mirroring` init is automatically provided for all applicable contexts. No laborious switch, and no ballooning Nx(N-1)x2 possible code possibilities for N contexts.
 
 What if you don't *want* this automatic conversion across between all possible contexts for some topics? That's something we can do too. More on this later.
 
