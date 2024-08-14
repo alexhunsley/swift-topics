@@ -45,7 +45,7 @@ extension SettingsScreenAnalytics {
 
 Ugh! This repetition seems very tedious. And what's worse, we've coupled our analytics type to our events type. This isn't ideal; imagine if we wanted to break our app into modules and minimise cross-talk.
 
-And suppose that alongside `Action` and `Analytics` we had another aspect such as `Logging`. You now have three very similar enums, and the amount of code mapping these objects to each other could balloon (3 x 2 = 6 possible conversion routines).
+And suppose that alongside `Action` and `Analytics` we had another aspect such as `Logging`. You now have three very similar enums, and the amount of code mapping these objects to each other could balloon (3 x 2 x 2 = 12 possible conversion routines).
 
 So what can we do to make this nicer?
 
