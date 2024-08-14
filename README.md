@@ -55,7 +55,7 @@ We want to be able to maintain the type-safety of using something like `enum`, w
 
 It's helpful to recognise that we have two orthogonal concerns here: 
 
-* **topics**, a single example if which is the Settings screen and its things of interest (`screenViewed`, `screenDismissed`, `settingsChanged`). 
+* **topics**, a single example of which is the Settings screen and its things of interest (`screenViewed`, `screenDismissed`, `settingsChanged`). 
 * **contexts**, which are aspects such as `Action`, `Event`, `Logging`.
 
 # Our example expressed in Swift Topics
