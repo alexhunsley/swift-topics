@@ -65,9 +65,9 @@ If we express our example above using the idea of topics, the setup code for our
 ```swift
 // a topic for our settings screen
 enum SettingsTopic: Topic {
-        case screenViewed
-    	case screenDismissed
-    	case settingChanged(String, Int)
+    case screenViewed
+    case screenDismissed
+    case settingChanged(String, Int)
 }
 
 // The Action context for SettingsTopic
@@ -152,7 +152,6 @@ let loginScreenActionViaBuild: LoginScreenAction
 let loginScreenEventViaMirror: LoginScreenEvent
     	= loginScreenActionViaBuild.mirror()
 ```
-
 
 # (Afterword)
 
